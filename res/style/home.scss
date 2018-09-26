@@ -17,6 +17,8 @@ html, body, h1, h2, h3, h4, h5, h6 {
 }
 
 body {
+    @extend .noise;
+    background-color: #f8f8f8;
     display: flex;
     flex-direction: column;
 
@@ -91,10 +93,23 @@ main > header + img {
     margin: -50px auto;
     transition: transform 0.2s;
     width: 100px;
+    position: relative;
+    z-index: 2;
 
     &:hover {
         transform: scale(1.2);
     }
+}
+
+.projects {
+    background-color: white;
+    box-shadow: 0 0 0.4rem 0 #333;
+    color: #888;
+    font-family: "Crimson Text", serif;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    max-width: 35rem;
+    padding: 3rem;
 }
 
 @keyframes pulse {
