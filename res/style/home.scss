@@ -7,9 +7,22 @@ html {
     font-size: 20px;
 }
 
+html, body {
+    height: 100%;
+}
+
 html, body, h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    > main {
+        flex-grow: 1;
+    }
 }
 
 body > header {
@@ -28,6 +41,22 @@ body > header {
         // use mask and background-color to colorize SVG background
         -webkit-mask: url(/image/hamburger.svg) no-repeat $site-menu-spacing 50%;
         -webkit-mask-size: $site-header-size - 2 * ($site-header-spacing + $site-menu-spacing);
+    }
+}
+
+body > footer {
+    color: #333;
+    font-family: Tangerine, cursive;
+    font-size: 1.4rem;
+    font-style: italic;
+    padding: 0.5rem;
+    text-align: center;
+
+    span {
+        animation-duration: 4s;
+        animation-name: pulse;
+        animation-iteration-count: infinite;
+        cursor: default;
     }
 }
 
@@ -66,4 +95,13 @@ main > header + img {
     &:hover {
         transform: scale(1.2);
     }
+}
+
+@keyframes pulse {
+    0%      {color: #333;}
+    70%     {color: #333;}
+    85%     {color: #444;}
+    96%     {color: #333;}
+    98%     {color: #555;}
+    100%    {color: #333;}
 }
