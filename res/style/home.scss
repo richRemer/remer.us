@@ -1,8 +1,69 @@
+@import "colors";
+@import "fonts";
+@import "metrics";
+@import "noise";
+
 html {
     font-size: 20px;
 }
 
-html, body {
+html, body, h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
+}
+
+body > header {
+    background-color: $site-background;
+    box-shadow: 0 0 0.5rem 0.1rem #222;
+    overflow: auto;
+    position: relative;
+    z-index: 1;
+
+    > nav {
+        background-color: #eee;
+        height: $site-header-size - 2 * $site-header-spacing;
+        margin: $site-header-spacing;
+        padding-left: $site-header-size - $site-header-spacing;
+
+        // use mask and background-color to colorize SVG background
+        -webkit-mask: url(/image/hamburger.svg) no-repeat $site-menu-spacing 50%;
+        -webkit-mask-size: $site-header-size - 2 * ($site-header-spacing + $site-menu-spacing);
+    }
+}
+
+main > header {
+    @extend .noise;
+    background-color: $header-background;
+    box-shadow: 0 0 0.5rem 0rem #333;
+    color: #eee;
+    padding: 1rem 1rem 3rem;
+    text-align: center;
+
+    h1 {
+        font-family: Montserrat, sans-serif;
+        font-size: 1.75rem;
+        font-weight: 600;
+    }
+
+    h2 {
+        font-family: Montserrat, sans-serif;
+        font-size: 1.25rem;
+        font-style: italic;
+        font-weight: 100;
+    }
+}
+
+main > header + img {
+    border: 0.15rem solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 0.5rem 0 #222;
+    display: block;
+    height: 100px;
+    margin: -50px auto;
+    transition: transform 0.2s;
+    width: 100px;
+
+    &:hover {
+        transform: scale(1.2);
+    }
 }
