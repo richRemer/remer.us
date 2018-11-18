@@ -21,7 +21,7 @@ $(SRV)/image/favicon-%.png:
 	@mkdir -p $(@D)
 	rsvg-convert -w $(notdir $*) -h $(notdir $*) $(PUB)/image/$(FAVICON).svg > $@
 
-$(SRV)/style/%.css: $(RES)/style/%.scss
+$(SRV)/style/%.css: $(RES)/style/%.scss $(RES)/style/_*.scss
 	@mkdir -p $(@D)
 	sass --cache-location /tmp $< > $@
 
