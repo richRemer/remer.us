@@ -49,6 +49,15 @@ body > header {
             color: inherit;
         }
 
+        hr {
+            display: inline-block;
+            border: 0;
+            margin: 0;
+            padding: 0;
+            flex-grow: 1;
+            width: 10px;
+        }
+
         .icon {
             background-color: #eee;
             display: inline-block;
@@ -62,6 +71,10 @@ body > header {
 
         .icon[data-icon="hamburger"] {
             -webkit-mask-image: url(/image/hamburger.svg);
+        }
+
+        .icon[data-icon="login"] {
+            -webkit-mask-image: url(/image/person-filled.svg);
         }
     }
 }
