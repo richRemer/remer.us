@@ -6,7 +6,7 @@ import signal from "./signal.js";
  * @param {string} name
  */
 export default function property(model, name) {
-    let value = model[name];
+    let value = undefined;
 
     const property = {
         valueOf() {return model[name];}
