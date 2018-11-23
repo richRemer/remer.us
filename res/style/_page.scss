@@ -81,6 +81,10 @@ body > header {
         .icon[data-icon="logout"] {
             -webkit-mask-image: url(/image/person-hollow.svg);
         }
+
+        .icon[data-show] {
+            display: none;
+        }
     }
 }
 
