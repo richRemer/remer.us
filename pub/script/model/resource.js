@@ -14,6 +14,11 @@ export default function resource(url) {
         get status() {return status;},
         get body() {return body;},
         get refreshing() {return Boolean(refreshing)},
+        get success() {return status >= 200 && status < 300;},
+        get redirect() {return status >= 300 && status < 400;},
+        get error() {return status >= 400;},
+        get clientError() {return status >= 400 && status < 500;},
+        get serverError() {return status >= 500;},
 
         async refresh() {
             if (!refreshing) {
