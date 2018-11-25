@@ -7,6 +7,7 @@ const {STATUS_CODES} = require("http");
 const cookieParser = require("cookie-parser");
 const auth = require("./lib/auth");
 const Storage = require("./lib/redis-storage");
+const redirect = require("./lib/redirect");
 
 const website = express();
 const server = https.createServer(tlsopt.readSync(), website);
@@ -26,10 +27,13 @@ server.listen(port, () => {
 });
 
 website.set("query parser", "simple");
+
 website.use(cookieParser());
 website.use(session({secret, resave, saveUninitialized}));
 website.use(auth.middleware({googleIdent, googleSecret, userdb}));
-website.use(express.static("srv", {index: "home.html"}));
+website.use(express.static("srv", {maxage: "1d"}));
+
+website.get(["", "/", "/home"], redirect("/home.html"));
 
 website.get("/me", auth.authed(), (req, res) => {
     res.json(req.user);
@@ -45,12 +49,21 @@ website.get("/logout", (req, res) => {
 });
 
 website.use((err, req, res, next) => {
-    console.error(process.env.DEBUG ? err.stack : err.message);
-    res.status(500);
+    // assume error was handled if status was set
+    if (res.statusCode < 400) {
+        console.error(process.env.DEBUG ? err.stack : err.message);
+        res.status(500);
+    }
+
     next();
 });
 
 website.use((req, res, next) => {
     if (res.statusCode === 200) res.status(404);
-    res.send(STATUS_CODES[res.statusCode]);
+
+    if ([401, 403, 404, 500].includes(res.statusCode)) {
+        res.sendFile(`${__dirname}/srv/${res.statusCode}.html`);
+    } else {
+        res.send(STATUS_CODES[res.statusCode]);
+    }
 });

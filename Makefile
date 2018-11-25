@@ -2,7 +2,9 @@ PUB = pub
 RES = res
 SRV = srv
 FAVICON = pipe
+
 TARGET = $(patsubst $(PUB)/%, $(SRV)/%, $(shell find $(PUB) -type f))
+PAGES = $(patsubst $(RES)/ui/%.pug, $(SRV)/%.html, $(wildcard $(RES)/ui/*.pug))
 STYLES = $(subst $(RES), $(SRV), $(patsubst %.scss, %.css, $(wildcard $(RES)/style/[^_]*.scss)))
 ICONS = $(foreach size, 16 32 48 64 96 128 192 256, $(SRV)/image/favicon-$(size).png)
 
@@ -14,7 +16,7 @@ install: systemd/remer.us.path systemd/remer.us.service systemd/remer.us-upgrade
 	systemctl restart remer.us remer.us.path
 	systemctl enable remer.us remer.us.path
 
-build: $(TARGET) $(ICONS) $(STYLES)
+build: $(TARGET) $(PAGES) $(ICONS) $(STYLES)
 
 clean:
 	rm -fr srv/*
@@ -30,5 +32,9 @@ $(SRV)/image/favicon-%.png:
 $(SRV)/style/%.css: $(RES)/style/%.scss $(RES)/style/_*.scss
 	@mkdir -p $(@D)
 	sass --cache-location /tmp $< > $@
+
+$(SRV)/%.html: $(RES)/ui/%.pug
+	@mkdir -p $(@D)
+	node_modules/pug-cli/index.js -Po $(@D) $<
 
 .PHONY: default install build clean

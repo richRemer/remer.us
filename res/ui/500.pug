@@ -1,0 +1,16 @@
+extends layout/page.pug
+
+block params
+    - var title = "Internal Server Error"
+    - var page = "error"
+
+block page-header
+    h1 Internal Server Error
+    h2 HTTP 500
+
+block main
+    section.error
+        p
+            | Something bad has happened.  I am sorry for my failures.  This is
+            | on me.  There's nothing you can do to remedy this.
+        p Maybe try to click something.  Things might improve.  They might not.

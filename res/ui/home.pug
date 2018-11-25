@@ -1,0 +1,16 @@
+extends layout/page.pug
+
+block params
+    - var title = "Richard Remer"
+    - var page = "home"
+
+block main
+    section.projects
+        p What I'm working on right now
+        ul
+            li this site
+            li web-based peer-to-peer networking
+            li Wayland support tools
+                ul
+                    li global keyboard/mouse shortcuts
+                    li workspace manager

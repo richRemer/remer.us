@@ -26,5 +26,8 @@
     "passport-google-oauth20": "^1.0.0",
     "redis": "^2.8.0",
     "tlsopt": "^1.0.1"
+  },
+  "devDependencies": {
+    "pug-cli": "^1.0.0-alpha6"
   }
 }
