@@ -1,6 +1,6 @@
 {
   "name": "remer.us",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "remer.us website",
   "scripts": {
     "prepublish": "make"
@@ -14,5 +14,14 @@
   "bugs": {
     "url": "https://github.com/richRemer/remer.us/issues"
   },
-  "homepage": "https://github.com/richRemer/remer.us#readme"
+  "homepage": "https://github.com/richRemer/remer.us#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
+    "redis": "^2.8.0",
+    "tlsopt": "^1.0.1"
+  }
 }
