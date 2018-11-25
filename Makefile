@@ -2,6 +2,7 @@ PUB = pub
 RES = res
 SRV = srv
 FAVICON = pipe
+NPM_BIN = node_modules/.bin
 
 TARGET = $(patsubst $(PUB)/%, $(SRV)/%, $(shell find $(PUB) -type f))
 PAGES = $(patsubst $(RES)/ui/%.pug, $(SRV)/%.html, $(wildcard $(RES)/ui/*.pug))
@@ -35,6 +36,6 @@ $(SRV)/style/%.css: $(RES)/style/%.scss $(RES)/style/_*.scss
 
 $(SRV)/%.html: $(RES)/ui/%.pug
 	@mkdir -p $(@D)
-	node_modules/pug-cli/index.js -Po $(@D) $<
+	$(NPM_BIN)/pug -Po $(@D) $<
 
 .PHONY: default install build clean
