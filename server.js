@@ -21,6 +21,10 @@ const docdb = Storage(redis, "DOC:");
 const resave = false;
 const saveUninitialized = false;
 
+if (process.cwd() !== __dirname) {
+    process.chdir(__dirname);
+}
+
 server.listen(port, () => {
     const {address, port} = server.address();
     console.log(`listening on ${address}:${port}`);
@@ -64,6 +68,7 @@ website.use((req, res, next) => {
     if ([401, 403, 404, 500].includes(res.statusCode)) {
         res.sendFile(`${__dirname}/srv/${res.statusCode}.html`);
     } else {
-        res.send(STATUS_CODES[res.statusCode]);
+        console.error(`status ${res.statusCode} response`);
+        res.sendFile(`${__dirname}/srv/error.html`);
     }
 });
