@@ -1,0 +1,22 @@
+[Unit]
+Description=remer.us Website
+
+[Service]
+Environment=LISTEN_PORT=
+Environment=TLS_CERT=
+Environment=SERVER_SECRET=
+Environment=GOOGLE_ID=
+Environment=GOOGLE_SECRET=
+Environment=AUTHOR_IDENT=
+Environment=REDIS_ENDPOINT="redis://localhost:6379?prefix=remer.us:"
+
+ExecStart=/usr/local/bin/remer.us
+UMask=0002
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+User=www-data
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target
