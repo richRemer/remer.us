@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+    head
+        title Homepage
+        script(type="module", src="/script/home.js")
+        link(rel="stylesheet", type="text/css", href="/style/home.css")
+        include ../partial/icon-links.pug
+        meta(name="viewport", content="width=device-width")
+    body
+        header
+            nav
+                a.icon(data-icon="hamburger" href="https://www.google.com/search?q=hamburger&tbm=isch") &nbsp;
+                hr
+                include ../partial/auth-buttons.pug
+        main
+            include ../partial/page-header.pug
+            block main
+        include ../partial/layout-footer.pug
