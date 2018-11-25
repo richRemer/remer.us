@@ -1,0 +1,14 @@
+extends layout/page.pug
+
+block params
+    - var title = "Service Unavailable"
+    - var page = "error"
+
+block page-header
+    h1 Service Unavailable
+    h2 HTTP 503
+
+block main
+    section.error
+        p There seems to be some sort of issue connecting to something.
+        p Maybe try again.  Whatever it was you did.  Again.
