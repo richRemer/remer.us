@@ -1,9 +1,13 @@
+block params
+    - var title = "remer.us"
+    - var page = undefined
+
 doctype html
 html(lang="en")
     head
-        title Homepage
-        script(type="module", src="/script/home.js")
-        link(rel="stylesheet", type="text/css", href="/style/home.css")
+        title= title
+        script(type="module", src=`/script/${page}.js`)
+        link(rel="stylesheet", type="text/css", href=`/style/${page}.css`)
         include ../partial/icon-links.pug
         meta(name="viewport", content="width=device-width")
     body

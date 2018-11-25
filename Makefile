@@ -4,7 +4,7 @@ SRV = srv
 FAVICON = pipe
 
 TARGET = $(patsubst $(PUB)/%, $(SRV)/%, $(shell find $(PUB) -type f))
-PAGES = $(patsubst $(RES)/ui/%.pug, $(SRV)/*.html, $(wildcard $(RES)/ui/*.pug))
+PAGES = $(patsubst $(RES)/ui/%.pug, $(SRV)/%.html, $(wildcard $(RES)/ui/*.pug))
 STYLES = $(subst $(RES), $(SRV), $(patsubst %.scss, %.css, $(wildcard $(RES)/style/[^_]*.scss)))
 ICONS = $(foreach size, 16 32 48 64 96 128 192 256, $(SRV)/image/favicon-$(size).png)
 

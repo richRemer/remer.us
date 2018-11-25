@@ -1,0 +1,14 @@
+extends layout/page.pug
+
+block params
+    - var title = "Unauthorized"
+    - var page = "error"
+
+block page-header
+    h1 Unauthorized
+    h2 HTTP 401
+
+block main
+    section.error
+        p Whoa, settle down.  What are you trying to do?
+        p Maybe you should try to <a href="/login">login</a> first.

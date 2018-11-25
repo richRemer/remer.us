@@ -1,0 +1,22 @@
+extends layout/page.pug
+
+block params
+    - var title = "Not Found"
+    - var page = "error"
+
+block page-header
+    h1 Not Found
+    h2 HTTP 404
+
+block main
+    section.error
+        p Something has gone wrong.  There's nothing here.  Nothing at all.
+        p One of two things probably happened
+        ol
+            li I fucked up
+            li you fucked up
+        p Try one of the following
+        ol
+            li click something
+            li change the URL
+            li give up
