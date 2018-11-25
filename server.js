@@ -3,7 +3,6 @@ const express = require("express");
 const session = require("express-session");
 const Redis = require("redis");
 const tlsopt = require("tlsopt");
-const {STATUS_CODES} = require("http");
 const cookieParser = require("cookie-parser");
 const auth = require("./lib/auth");
 const Storage = require("./lib/redis-storage");
@@ -65,7 +64,7 @@ website.use((err, req, res, next) => {
 website.use((req, res, next) => {
     if (res.statusCode === 200) res.status(404);
 
-    if ([401, 403, 404, 500].includes(res.statusCode)) {
+    if ([401, 403, 404, 500, 503].includes(res.statusCode)) {
         res.sendFile(`${__dirname}/srv/${res.statusCode}.html`);
     } else {
         console.error(`status ${res.statusCode} response`);
