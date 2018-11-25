@@ -1,7 +1,10 @@
 {
   "name": "remer.us",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "remer.us website",
+  "bin": {
+    "remer.us": "bin/remer.us.js"
+  },
   "scripts": {
     "prepublish": "make"
   },

@@ -8,6 +8,12 @@ ICONS = $(foreach size, 16 32 48 64 96 128 192 256, $(SRV)/image/favicon-$(size)
 
 default: build
 
+install: systemd/remer.us.path systemd/remer.us.service systemd/remer.us-upgrade.service
+	cp $^ /etc/systemd/system/
+	systemctl daemon-reload
+	systemctl restart remer.us remer.us.path
+	systemctl enable remer.us remer.us.path
+
 build: $(TARGET) $(ICONS) $(STYLES)
 
 clean:
@@ -25,4 +31,4 @@ $(SRV)/style/%.css: $(RES)/style/%.scss $(RES)/style/_*.scss
 	@mkdir -p $(@D)
 	sass --cache-location /tmp $< > $@
 
-.PHONY: default build clean
+.PHONY: default install build clean

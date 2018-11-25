@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch for changes to remer.us site
+
+[Path]
+PathChanged=/usr/local/lib/node_modules/remer.us/package.json
+Unit=remer.us-upgrade.service
+
+[Install]
+WantedBy=multi-user.target
