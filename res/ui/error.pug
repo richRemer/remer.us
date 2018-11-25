@@ -1,0 +1,13 @@
+extends layout/page.pug
+
+block params
+    - var title = "Error"
+    - var page = "error"
+
+block page-header
+    h1 Error
+    h2 Unspecified Error
+
+block main
+    section.error
+        p Something went wrong.  Terribly wrong.
