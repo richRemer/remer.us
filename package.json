@@ -28,6 +28,7 @@
     "tlsopt": "^1.0.1"
   },
   "devDependencies": {
+    "node-sass": "^4.10.0",
     "pug-cli": "^1.0.0-alpha6"
   }
 }
