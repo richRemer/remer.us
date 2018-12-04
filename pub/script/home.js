@@ -1,20 +1,17 @@
+import apply from "./fn/apply.js";
+import {one as selectOne} from "./dom/select.js";
+import click from "./dom/click.js";
 import resource from "./model/resource.js";
 import property from "./model/property.js";
 import signal from "./model/signal.js";
 import hide from "./view/hide.js";
 import show from "./view/show.js";
+import stopToggle from "./view/media/stop-toggle.js";
 
-const face = document.getElementById("face");
-const welcome = document.getElementById("welcome");
-const login = document.querySelector("[data-icon='login']");
-const logout = document.querySelector("[data-icon='logout']");
-const user = resource("/me");
-const loggedIn = property(user, "success");
+const select = apply(selectOne, 2)(document);
+const loggedIn = property(resource("/me"), "success");
 
-face.addEventListener("click", () => {
-    welcome[welcome.paused ? "play" : "pause"]();
-    if (welcome.paused) welcome.currentTime = 0;
-});
+click(select("#face"), stopToggle(select("#welcome")));
 
-signal(loggedIn, hide(login));
-signal(loggedIn, show(logout));
+signal(loggedIn, hide(select("[data-icon='login']")));
+signal(loggedIn, show(select("[data-icon='logout']")));
