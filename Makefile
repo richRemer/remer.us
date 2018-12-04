@@ -21,7 +21,6 @@ build: $(TARGET) $(PAGES) $(ICONS) $(STYLES)
 
 clean:
 	rm -fr srv/*
-	rm -fr node_modules/
 
 $(SRV)/%: $(PUB)/%
 	@mkdir -p $(@D)
@@ -31,18 +30,12 @@ $(SRV)/image/favicon-%.png:
 	@mkdir -p $(@D)
 	rsvg-convert -w $(notdir $*) -h $(notdir $*) $(PUB)/image/$(FAVICON).svg > $@
 
-$(SRV)/style/%.css: $(RES)/style/%.scss $(RES)/style/_*.scss $(NPM_BIN)/node-sass
+$(SRV)/style/%.css: $(RES)/style/%.scss $(RES)/style/_*.scss
 	@mkdir -p $(@D)
 	$(NPM_BIN)/node-sass --cache-location /tmp $< > $@
 
-$(SRV)/%.html: $(RES)/ui/%.pug $(NPM_BIN)/pug
+$(SRV)/%.html: $(RES)/ui/%.pug
 	@mkdir -p $(@D)
-	$(NPM_BIN)/pug -Po $(@D) $<
-
-$(NPM_BIN)/pug:
-	npm install
-
-$(NPM_BIN)/node-sass:
-	npm install
+	$(NPM_BIN)/pug -Po $(@D) $< > /dev/null
 
 .PHONY: default install build clean
